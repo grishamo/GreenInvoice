@@ -37,6 +37,7 @@ export default {
   state: {
     apiKey: '',
     apiSecret: '',
+    logedIn: false,
     user: null,
     token: null
   },
@@ -52,6 +53,9 @@ export default {
     },
     UPDATE_USER (state, newValue) {
       state.user = newValue
+    },
+    UPDATE_LOGIN_STATUS (state, newValue) {
+      state.logedIn = newValue
     }
   },
   actions: {
@@ -63,6 +67,7 @@ export default {
     },
     updateUser ({commit}, newUser) {
       commit('UPDATE_USER', newUser)
+      commit('UPDATE_LOGIN_STATUS', true)
     },
     updateToken ({commit}, newToken) {
       commit('UPDATE_TOKEN', newToken)
@@ -71,6 +76,7 @@ export default {
     logOut ({commit}) {
       // Consider to return a Promise if in the future logout will be an async
       LocalData.remove()
+      commit('UPDATE_LOGIN_STATUS', false)
     },
     getToken () {
       console.log('updateToken')

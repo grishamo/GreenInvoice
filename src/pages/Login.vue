@@ -78,7 +78,7 @@ export default {
     // Handle 'back' usecase:
     // after user already visited welcome page,
     // don't allow to sign in again (only after logout)
-    if (store.state.GreenStore.user && previousRoute.path === '/welcome') {
+    if (store.state.GreenStore.logedIn) {
       redirect('/welcome')
     }
   }
